@@ -1,0 +1,79 @@
+extends layout
+
+block content
+    h1= title
+    h2
+     p User Management
+
+    // Wrapper
+    #wrapper
+
+        // USER INFO
+        #userInfo
+            h2 User Info
+            p
+                strong Name:
+                |  <span id='userInfoName'></span>
+                br
+                strong Latitude:
+                |  <span id='userInfoLatitude'></span>
+                br
+                strong Longitude:
+                |  <span id='userInfoLongitude'></span>
+                br
+                strong Message:
+                |  <span id='userInfoMessage'></span>
+        // /USER INFO
+
+        // USER LIST
+        h2 User List
+        #userList
+            table
+                thead
+                    th UserName
+                    th Latitude
+                    th Longitude 
+                    th Message 
+                    th Edit Post?                                     
+                    th Remove Post?
+                tbody
+        // /USER LIST
+
+        // ADD USER
+        h2 Add User and Post Message
+        #addUser
+            fieldset
+                input#inputUserName(type='text', placeholder='Username')
+                input#inputUserLocationLat(type='text', placeholder='Latitude')
+                input#inputUserLocationLng(type='text', placeholder='Longitude')                
+                br
+                input#inputUserEmail(type='text', placeholder='Email')
+                input#inputUserPhone(type='text', placeholder='Phone')               
+                strong Chat Allowed:
+                span#space
+                select#inputChatAllowed
+                 each chatOption, i in chatOptions
+                  option(value=i) #{chatOption}
+                br
+                br
+                strong My Post:
+                br
+                textarea(id="inputUserLatestPost") Post your message here!    
+                span#space           
+                strong Post Type:
+                span#space
+                select#inputPostType
+                 each postType, i in postTypes
+                  option(value=i) #{postType}      
+                span#space           
+                strong Post Location:
+                span#space
+                select#inputPostLocation
+                 each postLocation, i in postLocations
+                  option(value=i) #{postLocation}               
+                br
+                br
+                button#btnAddUser Add User
+        // /ADD USER
+
+    // /WRAPPER
