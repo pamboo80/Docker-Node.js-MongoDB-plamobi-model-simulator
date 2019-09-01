@@ -10,6 +10,19 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+    depends_on:
+      - mongo
+ 
+  mongo:
+    container_name: plamobi-mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+    restart: unless-stopped
+    networks:
+      - app-network
 
   webserver:
     image: nginx:mainline-alpine
