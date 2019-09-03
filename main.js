@@ -20,6 +20,7 @@ var db = monk('mongo:27017/plaMobi', {
     return;
   }
 });
+
 /*
 const mongoNew = require('mongodb').MongoClient;
 const url = 'mongodb://mongo:27017/plaMobi';
@@ -33,7 +34,6 @@ mongoNew.connect(url, {
     return;
   }
 }); */
-
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

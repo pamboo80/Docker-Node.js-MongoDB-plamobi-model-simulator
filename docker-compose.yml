@@ -1,12 +1,14 @@
 version: '3'
 
 services:
-  plamobi:
+  api.plamobi:
     build:
       context: .
       dockerfile: Dockerfile
     image: plamobi-model-simulator
     container_name: plamobi
+    ports:
+      - "3001:3001"
     restart: unless-stopped
     networks:
       - app-network
@@ -36,7 +38,7 @@ services:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
     depends_on:
-      - plamobi
+      - api.plamobi
     networks:
       - app-network
 
@@ -58,7 +60,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /root/microservices/nodejs/plamobi-model-simulator/views/
+      device: ${PWD}/views/
       o: bind
 
 networks:

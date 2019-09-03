@@ -10,6 +10,8 @@ USER node
 
 RUN npm install
 
+RUN npm audit fix
+
 COPY --chown=node:node . /home/node/app/
 
 EXPOSE 3001
