@@ -14,8 +14,7 @@ router.get('/landmarklist/:id', function (req, res) {
         
         //res.json(docs);
         var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location= '
-                  + docs[0].latitude + ',' + docs[0].longitude+ '&radius=1000&key=AIzaSyA-BXeSjAy8z867DPBQlNRaPgFM6tAzEzY';
-        //var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyA-BXeSjAy8z867DPBQlNRaPgFM6tAzEzY';
+                  + docs[0].latitude + ',' + docs[0].longitude+ '&radius=1000&key=AIzaSyBHV5_9HpeLIov3xAanRbgZlIfDAv_Ep_I';
         request({
             url: url,
             json: true
@@ -61,13 +60,13 @@ router.get('/landmarklist/:lat/:lng', function (req, res) {
         
     //res.json(docs);
     var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location= ' 
-                + lat + ',' + lng + '&radius=1000&key=AIzaSyA-BXeSjAy8z867DPBQlNRaPgFM6tAzEzY';
-    //var url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyA-BXeSjAy8z867DPBQlNRaPgFM6tAzEzY';
+                + lat + ',' + lng + '&radius=1000&key=AIzaSyBHV5_9HpeLIov3xAanRbgZlIfDAv_Ep_I';
     request({
         url: url,
         json: true
     }, function (error, response, body) {
-            
+        //console.error(error);
+        //console.log(response);
         if (!error && response.statusCode === 200) {
             //console.log(body) // Print the json response
             var results = [];
