@@ -7,10 +7,33 @@ var bodyParser = require('body-parser');
 // Database
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/plaMobi', {
+
+// https://stackoverflow.com/questions/53887738/server-selection-timeout-error-mongodb-go-driver-with-docker
+// If you are trying to run the service from docker as well you will need to connect to the mongo service name as in docker-compose and not to localhost or docke inspect container IP too didn't work. So use the docker-compose service name given as in the docker-compose file as servername in the connection string.
+var db = monk('mongo:27017/plaMobi', {
    useNewUrlParser: true,
    useUnifiedTopology: true
- });
+ }, (err, client) => {
+  if (err) {
+    console.log("old method");
+    console.error(err);
+    return;
+  }
+});
+/*
+const mongoNew = require('mongodb').MongoClient;
+const url = 'mongodb://mongo:27017/plaMobi';
+mongoNew.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }, (err, client) => {
+  if (err) {
+    console.log("new method");
+    console.error(err);
+    return;
+  }
+}); */
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
